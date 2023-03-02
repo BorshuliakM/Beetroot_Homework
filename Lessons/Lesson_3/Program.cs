@@ -9,3 +9,4 @@ f2 = Math.Abs(x) * Math.Sin(x);
 f3 = 2 * Math.PI * x;
 f4 = Math.Max(x, y);
 Console.WriteLine($"f1 = {f1}\nf2 = {f2}\nf3 = {f3}\nf4 = {f4}");
+Console.WriteLine($"{x} days left to New Year\n{y} days passed from New Year");
