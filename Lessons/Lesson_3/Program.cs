@@ -1,0 +1,11 @@
+﻿double f1, f2, f3, f4;
+int x, y;
+Console.Write("Input x = ");
+x = int.Parse(Console.ReadLine());
+Console.Write("Input y = ");
+y = int.Parse(Console.ReadLine());
+f1 = -6 * x ^ 3 + 5 * x ^ 2 - 10 * x + 15;
+f2 = Math.Abs(x) * Math.Sin(x);
+f3 = 2 * Math.PI * x;
+f4 = Math.Max(x, y);
+Console.WriteLine($"f1 = {f1}\nf2 = {f2}\nf3 = {f3}\nf4 = {f4}");
