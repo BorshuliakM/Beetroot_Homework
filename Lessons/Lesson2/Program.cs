@@ -4,7 +4,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        FileInput("Євген Ш.Л.", "+380977489712");
+        FileInput("Костюшин К.Р.", "+380952525255");
+        FileInput("Євген Ш.Л.", "+380965421378");
         Search("Євген");
     }
 
@@ -14,13 +15,14 @@ internal class Program
         string phone_pattern = @"\+380\d{9}";
         Regex name = new Regex(name_pattern);
         Regex phone = new Regex(phone_pattern);
-        if (name.IsMatch(Fullname) && phone.IsMatch(PhoneNumber)) File.AppendAllText("C:\\Users\\borsh\\Source\\Repos\\BorshuliakM\\Beetroot_Homework\\Lessons\\Lesson2\\TelephoneBook.txt", 
-            Fullname+" "+PhoneNumber);
+        if (name.IsMatch(Fullname) && phone.IsMatch(PhoneNumber)) File.AppendAllText("TelephoneBook.txt", 
+            Fullname+" "+PhoneNumber+"\n");
         else Console.WriteLine("Incorrect input");
     }
+
     private static void Search(string input)
     {
-        string[] users = File.ReadAllLines("C:\\Users\\borsh\\Source\\Repos\\BorshuliakM\\Beetroot_Homework\\Lessons\\Lesson2\\TelephoneBook.txt");
+        string[] users = File.ReadAllLines("TelephoneBook.txt");
         List<string> matches = new List<string>();
         foreach (var user in users)
         {
