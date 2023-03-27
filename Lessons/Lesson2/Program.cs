@@ -22,20 +22,27 @@ internal class Program
 
     private static void Search(string input)
     {
-        string[] users = File.ReadAllLines("TelephoneBook.txt");
-        List<string> matches = new List<string>();
-        foreach (var user in users)
+        try
         {
-            if (user.Contains(input))
+            string[] users = File.ReadAllLines("TelephoneBook.txt");
+            List<string> matches = new List<string>();
+            foreach (var user in users)
             {
-                matches.Add(user);
+                if (user.Contains(input))
+                {
+                    matches.Add(user);
+                }
+            }
+
+            Console.WriteLine("Found users: ");
+            foreach (var user in matches)
+            {
+                Console.WriteLine(user);
             }
         }
-
-        Console.WriteLine("Found users: ");
-        foreach (var user in matches)
-        {
-            Console.WriteLine(user);
+        catch ( Exception e)
+        { 
+            Console.WriteLine(e.Message); 
         }
     }
 }
