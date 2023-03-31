@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lesson
+namespace School_domain
 {
-    internal class School
+    internal class Pupil
     {
     }
 }

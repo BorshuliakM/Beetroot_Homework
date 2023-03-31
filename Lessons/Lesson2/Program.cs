@@ -1,2 +1,3 @@
-﻿Console.WriteLine("Hello, World!");
-Console.ReadKey();
+﻿using School_domain;
+
+School School_9 = new School();
