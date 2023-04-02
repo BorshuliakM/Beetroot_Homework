@@ -8,5 +8,9 @@ namespace School_domain
 {
     internal class Teacher
     {
+        public string name;
+        public int age;
+        public int specialization;
+        public Teacher() { }
     }
 }

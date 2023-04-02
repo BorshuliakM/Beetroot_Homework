@@ -8,5 +8,8 @@ namespace School_domain
 {
     internal class Pupil
     {
+        string name;
+        int age;
+
     }
 }
