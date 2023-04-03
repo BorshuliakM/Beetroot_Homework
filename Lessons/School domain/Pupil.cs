@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace School_domain
 {
-    internal class Pupil
+    public class Pupil
     {
-        string name;
-        int age;
+        public string name;
+        public int age;
+        public int grade;
 
+        public Pupil(string name, int age, int grade) 
+        { 
+            this.name = name;
+            this.age = age;
+            this.grade = grade;
+        }
     }
 }

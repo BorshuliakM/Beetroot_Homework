@@ -1,21 +1,54 @@
-﻿namespace School_domain
+﻿using System.Security.Claims;
+
+namespace School_domain
 {
     public class School
     {
         private string school_name;
-        private string school_type;
+        private List<Pupil> pupils;
+        private List<Teacher> teachers;
+        private List<Class> classes;
 
-
-        public School(string school_name, string school_type) 
-        { 
-            this.school_name = school_name;
-            this.school_type = school_type;
-        }
-        public void ChangeName(string name, string type)
+        public School(string school_name)
         {
-            name=school_name;
-            type=school_type;
+            this.school_name = school_name;
+            pupils = new List<Pupil>();
+            teachers = new List<Teacher>();
+            classes = new List<Class>();
+        }
+        public void ChangeName(string name)
+        {
+            name = school_name;
         }
 
+        public void AddPupil(Pupil pupil)
+        {
+            pupils.Add(pupil);
+        }
+
+        public void AddTeacher(Teacher teacher)
+        {
+            teachers.Add(teacher);
+        }
+
+        public void AddClass(Class Class)
+        {
+            classes.Add(Class);
+        }
+
+        public List<Pupil> GetPupils()
+        {
+            return pupils;
+        }
+
+        public List<Teacher> GetTeachers()
+        {
+            return teachers;
+        }
+
+        public List<Class> GetClasses()
+        {
+            return classes;
+        }
     }
 }
