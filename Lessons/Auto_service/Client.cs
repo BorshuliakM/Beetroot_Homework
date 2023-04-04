@@ -1,7 +1,12 @@
 ﻿namespace Auto_service
 {
-    public class Class1
+    internal class Client : Person
     {
+        private Vehicle vehicle;
+        public Client(int id, string name, Vehicle vehicle) : base(id, name)
+        {
+            this.vehicle = vehicle;
+        }
 
     }
 }

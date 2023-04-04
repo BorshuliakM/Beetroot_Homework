@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lesson
+﻿namespace Auto_service
 {
-    internal class Engine
+    internal class Engine : Vehicle
     {
+        private string type; //like disel or patrol
+        private double v; //m^3
+
     }
 }
