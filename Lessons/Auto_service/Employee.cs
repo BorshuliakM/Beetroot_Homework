@@ -13,5 +13,6 @@ namespace Auto_service
         {
             this.auto_Service = auto_Service;
         }
+        public override void Print() => Console.WriteLine("Name:{0} id:{1} Autoservice:{2}", name, id, auto_Service.name);
     }
 }

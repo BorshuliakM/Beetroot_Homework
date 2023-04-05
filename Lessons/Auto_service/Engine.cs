@@ -1,9 +1,13 @@
 ﻿namespace Auto_service
 {
-    internal class Engine : Vehicle
+    public class Engine
     {
-        private string type; //like disel or patrol
-        private double v; //m^3
-
+        public string engine_type { get; set; }
+        public double v { get; set; }
+        public Engine(string engine_type, double v)
+        {
+            this.engine_type = engine_type;
+            this.v = v;
+        }
     }
 }

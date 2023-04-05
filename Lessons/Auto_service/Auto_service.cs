@@ -9,23 +9,30 @@ namespace Auto_service
     internal class Auto_service
     {
         public string name { get; set; }
-        public string description { get; set; }
+        public string desc { get; set; }
         public List<Client> clients { get; set; }
         public List<Employee> employers { get; set; }
-        public Auto_service(string name, string description, Client clients, Employee employers)
+        public Auto_service(string name, string desc, Client clients, Employee employers)
         {
             this.name = name;
-            this.description = description;
+            this.desc = desc;
             this.clients = new List<Client>();
             this.employers = new List<Employee>();
         }
-        public void addClient(Client client)
+        public void PrintInfo() => Console.WriteLine(name, desc);
+        public void PrintEmployers()
         {
-            this.clients.Add(client);
+            foreach (var e in employers) 
+            {
+                Console.WriteLine(e.name);
+            }
         }
-        public void removeClient(Client client)
+        public void PrintClients()
         {
-            this.clients.Remove(client);
+            foreach (var e in clients)
+            {
+                Console.WriteLine(e.name);
+            }
         }
     }
 }

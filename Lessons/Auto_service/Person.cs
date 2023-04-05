@@ -10,10 +10,12 @@ namespace Auto_service
     {
         public int id { get; set; }
         public string name { get; set; }
-        public Person(int id, string name) 
+        public Person(int id, string name)
         {
             this.id = id;
             this.name = name;
         }
+        public virtual void Print() => Console.WriteLine($"Name {name}\n Id {id}");
+
     }
 }
