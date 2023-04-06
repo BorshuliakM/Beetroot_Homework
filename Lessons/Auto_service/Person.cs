@@ -8,14 +8,14 @@ namespace Auto_service
 {
     internal class Person
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public Person(int id, string name)
         {
-            this.id = id;
-            this.name = name;
+            Id = id;
+            Name = name;
         }
-        public virtual void Print() => Console.WriteLine($"Name {name}\n Id {id}");
+        public virtual void Print() => Console.WriteLine($"Name {Name}\n Id {Id}");
 
     }
 }

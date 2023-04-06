@@ -2,11 +2,11 @@
 {
     internal class Client : Person
     {
-        public Car vehicle;
+        public Car Vehicle { get; set; }
         public Client(int id, string name, Car vehicle) : base(id, name)
         {
-            this.vehicle = vehicle;
+            Vehicle = vehicle;
         }
-        public override void Print() => Console.WriteLine("Name:{0} id:{1} Vehicle:{2}",name,id,vehicle.model);
+        public override void Print() => Console.WriteLine("Name:{0} id:{1} Vehicle:{2}", Name, Id, Vehicle.Model);
     }
 }

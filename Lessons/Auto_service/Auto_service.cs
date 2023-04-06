@@ -8,30 +8,30 @@ namespace Auto_service
 {
     internal class Auto_service
     {
-        public string name { get; set; }
-        public string desc { get; set; }
-        public List<Client> clients { get; set; }
-        public List<Employee> employers { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
+        public List<Client> Clients { get; set; }
+        public List<Employee> Employers { get; set; }
         public Auto_service(string name, string desc, Client clients, Employee employers)
         {
-            this.name = name;
-            this.desc = desc;
-            this.clients = new List<Client>();
-            this.employers = new List<Employee>();
+            Name = name;
+            Desc = desc;
+            Clients = new List<Client>();
+            Employers = new List<Employee>();
         }
-        public void PrintInfo() => Console.WriteLine(name, desc);
+        public void PrintInfo() => Console.WriteLine(Name, Desc);
         public void PrintEmployers()
         {
-            foreach (var e in employers) 
+            foreach (var e in Employers) 
             {
-                Console.WriteLine(e.name);
+                Console.WriteLine(e.Name);
             }
         }
         public void PrintClients()
         {
-            foreach (var e in clients)
+            foreach (var e in Clients)
             {
-                Console.WriteLine(e.name);
+                Console.WriteLine(e.Name);
             }
         }
     }

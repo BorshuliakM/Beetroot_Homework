@@ -8,12 +8,12 @@ namespace Auto_service
 {
     public class Transmission
     {
-        public string type { get; set; }
-        public int gears { get; set; }
+        public string Type { get; set; }
+        public int Gears { get; set; }
         public Transmission(string type, int gears)
         {
-            this.type = type;
-            this.gears = gears;
+            Type = type;
+            Gears = gears;
         }
     }
 }
