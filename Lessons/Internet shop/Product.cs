@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Internet_shop
 {
-    internal class Product
+    public class Product
     {
+        public string Name { get; set; }
+        public double Price { get; set; }  
+        public string Desc { get; set; }
+        public Product (string name, double price, string desc)
+        {
+            Name = name;
+            Price = price;
+            Desc = desc;
+        }
+
     }
 }
