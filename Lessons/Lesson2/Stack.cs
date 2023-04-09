@@ -9,36 +9,69 @@ namespace Lesson
 {
     public class Stack<T>
     {
-        private List<T> _items;
-        public Stack() => this._items = new List<T>();
-        public void Push(T item) => this._items.Add(item);
+        private T[] _items;
+        private int _count;
+
+        public Stack()
+        {
+            _items = new T[0];
+            _count = 0;
+        }
+
+        public void Push(T obj)
+        {
+            Array.Resize(ref _items, _count + 1);
+            _items[_count] = obj;
+            _count++;
+        }
 
         public T Pop()
         {
-            if (this._items.Count == 0) throw new InvalidOperationException("Stack is empty.");
-            T item = this._items[^1];
-            this._items.RemoveAt(this._items.Count - 1);
-            return item;
+            if (_count == 0)
+            {
+                throw new InvalidOperationException("Stack is empty.");
+            }
+
+            _count--;
+            T obj = _items[_count];
+            Array.Resize(ref _items, _count);
+            return obj;
         }
+
         public void Clear()
         {
-            _items.Clear();
+            _items = new T[0];
+            _count = 0;
         }
-        public int Count()
+
+        public int Count
         {
-            if (_items.Count==0) Console.WriteLine("Stack is empty.");
-            return _items.Count;
+            get { return _count; }
         }
+
         public T Peek()
         {
-            if (this._items.Count == 0) throw new InvalidOperationException("Stack is empty.");
-            return this._items[^1];
+            if (_count == 0)
+            {
+                throw new InvalidOperationException("Stack is empty.");
+            }
+
+            return _items[_count - 1];
         }
-        public T[] CopyToArr(T[] array)
+
+        public void CopyTo(T[] arr)
         {
-            if (this._items.Count == 0) throw new InvalidOperationException("Stack is empty.");
-            _items.CopyTo(array);
-            return array;
+            if (arr == null)
+            {
+                throw new ArgumentNullException(nameof(arr));
+            }
+
+            if (arr.Length < _count)
+            {
+                throw new ArgumentException("Destination array is not long enough.");
+            }
+
+            Array.Copy(_items, 0, arr, 0, _count);
         }
     }
 }
