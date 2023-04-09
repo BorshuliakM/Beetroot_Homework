@@ -31,7 +31,6 @@ namespace Lesson
             {
                 throw new InvalidOperationException("Stack is empty.");
             }
-
             _count--;
             T obj = _items[_count];
             Array.Resize(ref _items, _count);
@@ -44,9 +43,9 @@ namespace Lesson
             _count = 0;
         }
 
-        public int Count
+        public int Count()
         {
-            get { return _count; }
+            return _count;
         }
 
         public T Peek()
