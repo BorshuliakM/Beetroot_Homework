@@ -67,7 +67,7 @@ namespace Lesson
 
             if (arr.Length < _count)
             {
-                throw new ArgumentException("Destination array is not long enough.");
+                throw new ArgumentException("Array overflow.");
             }
 
             Array.Copy(_items, 0, arr, 0, _count);
