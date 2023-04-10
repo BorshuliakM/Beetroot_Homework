@@ -8,12 +8,20 @@ namespace Internet_shop
 {
     public class Order
     {
-        public Buyer Buyer { get; set; }
+        public static int _orderID = 0;
+        public string CustomerName { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public DateTime OrderDate { get; set; }
         public List<Product> Products { get; set; }
 
-        public Order(Buyer buyer)
+        public Order(string customerName, string email, string address, DateTime orderDate)
         {
-            Buyer = buyer;
+            _orderID++;
+            CustomerName = customerName;
+            Email = email;
+            Address = address;
+            OrderDate = orderDate;
             Products = new List<Product>();
         }
 
@@ -21,7 +29,10 @@ namespace Internet_shop
         {
             Products.Add(product);
         }
-
+        public void RemoveProduct(Product product) 
+        { 
+            Products.Remove(product);
+        }
         public double GetTotal()
         {
             double total = 0;

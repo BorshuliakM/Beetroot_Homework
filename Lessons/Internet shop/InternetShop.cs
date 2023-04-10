@@ -3,30 +3,31 @@
     public class InternetShop
     {
         public List<Product> Products { get; set; }
-        public List<> Customers { get; set; }
         public List<Order> Orders { get; set; }
 
-        public Shop()
+        public InternetShop()
         {
             Products = new List<Product>();
-            Customers = new List<Customer>();
             Orders = new List<Order>();
         }
-
         public void AddProduct(Product product)
         {
             Products.Add(product);
         }
-
-        public void AddCustomer(Customer customer)
-        {
-            Customers.Add(customer);
+        public void RemoveProduct(Product product) 
+        { 
+            Products.Remove(product);
         }
-
         public void PlaceOrder(Order order)
         {
             Orders.Add(order);
+            Console.WriteLine($"Hello {order.CustomerName}" +
+                $"Your order {Order._orderID} submitted");
         }
-
+        public void ShopInterface()
+        {
+            Console.Write($"Enter Your name: ");
+            Order Console.ReadLine();
+        }
     }
 }

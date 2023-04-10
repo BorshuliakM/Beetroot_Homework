@@ -11,7 +11,6 @@ namespace Internet_shop
         public string Name { get; set; }
         public double Price { get; set; }  
         public string Desc { get; set; }
-        public int Amount { get; set; } = 0;
         public Product (string name, double price, string desc)
         {
             Name = name;
