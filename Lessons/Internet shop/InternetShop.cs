@@ -24,10 +24,5 @@
             Console.WriteLine($"Hello {order.CustomerName}" +
                 $"Your order {Order._orderID} submitted");
         }
-        public void ShopInterface()
-        {
-            Console.Write($"Enter Your name: ");
-            Order Console.ReadLine();
-        }
     }
 }
