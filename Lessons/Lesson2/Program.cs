@@ -10,21 +10,30 @@ internal class Program
         {
             PropertyNameCaseInsensitive = true
         };
-
-        ShowNewsCategory();
-        string category_name = CategorySelection();
+        string category = CategorySelection();
+        NewsModel? mod = await GetData(category);
+        ShowNews(mod);
+    }
+    private static async Task<NewsModel?> GetData(string categoryName)
+    {
         try
         {
-            NewsModel newsByCategory = await new HttpClient()
-                .GetFromJsonAsync<NewsModel>($"https://inshorts.deta.dev/news?category={category_name}");
-            ShowNews(newsByCategory);
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync($"https://inshorts.deta.dev/news?category={categoryName}");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                NewsModel newsByCategory = JsonSerializer.Deserialize<NewsModel>(responseBody);
+                return newsByCategory;
+            }
         }
         catch (HttpRequestException e)
         {
             Console.WriteLine(e.Message);
+            return null;
         }
     }
-    private static void ShowNewsCategory()
+    private static string CategorySelection()
     {
         Console.WriteLine(
             "News category list:" +
@@ -40,16 +49,11 @@ internal class Program
             "\n10 - Hatke" +
             "\n11 - Science" +
             "\n12 - Automobile");
-    }
-    private static string CategorySelection()
-    {
-        int category_number;
-        string category;
         Console.WriteLine("Pick a category number: ");
-        bool res = int.TryParse(Console.ReadLine(), out category_number);
-        if (res == true && category_number > 0 && category_number <= 12)
+        bool isParsed = int.TryParse(Console.ReadLine(), out int categoryNumber);
+        if (isParsed && categoryNumber > 0 && categoryNumber <= 12)
         {
-            category = category_number switch
+            string category = categoryNumber switch
             {
                 1 => "all",
                 2 => "business",
@@ -63,19 +67,30 @@ internal class Program
                 10 => "hatke",
                 11 => "science",
                 12 => "automobile",
-                _ => "All"
+                _ => "all"
             };
             return category;
         }
         else
         {
-            throw new Exception("IncorrectInput!\nPick a number from 1 to 12");
+            throw new Exception("Incorrect Input!\nPick a number from 1 to 12");
         }
     }
     private static void ShowNews(NewsModel news)
     {
+        if (news == null)
+        {
+            Console.WriteLine("No news available.");
+            return;
+        }
+
         List<NewsData> newsData = news.Data;
-        foreach (var item in newsData) 
+        if (newsData == null || newsData.Count == 0)
+        {
+            Console.WriteLine("No news data available.");
+            return;
+        }
+        foreach (var item in newsData)
         {
             Console.WriteLine($"Author: {item.Author}\nContent: {item.Content}");
         }
