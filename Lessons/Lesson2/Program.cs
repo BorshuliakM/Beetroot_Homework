@@ -2,6 +2,8 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 
+namespace Lesson24;
+
 internal class Program
 {
     private static async Task Main(string[] args)
