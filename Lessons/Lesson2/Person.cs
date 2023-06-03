@@ -1,4 +1,4 @@
-﻿namespace Lesson_20;
+﻿namespace Linq;
 
 
 public enum Gender

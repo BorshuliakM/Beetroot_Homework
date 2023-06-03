@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-using System;
-using System.Linq;
-using System.Text.RegularExpressions;
 
-namespace Lesson_20;
+namespace Linq;
 
 internal class Program
 {
@@ -18,7 +14,18 @@ internal class Program
     private static void Main(string[] args)
     {
         var persons = JsonConvert.DeserializeObject<IEnumerable<Person>>(File.ReadAllText("data.json"));
-        var SameAbout = SameAbout(persons);
+        //1
+        var north = FarthestNorth(persons);
+        var south = FarthestSouth(persons);
+        var west = FarthestWest(persons);
+        var east = FarthestEast(persons);
+        //2
+        PersonsDistance(persons, out var MaxDist, out var MinDist);
+        //3
+        SameAbout(persons, out var sameAbout);
+        //4
+        SameFriends(persons, out var sameFriends);
+
     }
     //find out who is located farthest north/south/west/east using latitude/longitude data
     public static Person FarthestNorth(IEnumerable<Person> persons) => persons.OrderByDescending(p => p.Latitude).First();
@@ -36,12 +43,12 @@ internal class Program
         double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
         return R * c;
     }
-    public static void Distance(IEnumerable<Person> persons, out UserDistanceRecord max, out UserDistanceRecord min)
+    public static void PersonsDistance(IEnumerable<Person> persons, out UserDistanceRecord max, out UserDistanceRecord min)
     {
         var personsArray = persons.ToArray();
         max = new UserDistanceRecord(0, 0, 0);
         min = new UserDistanceRecord(0, 0, 50000);
-        for (int i = 0; i < personsArray.Length-1; i++)
+        for (int i = 0; i < personsArray.Length - 1; i++)
             for (int j = i + 1; j < personsArray.Length; j++)
             {
                 var rec = new UserDistanceRecord(
@@ -53,7 +60,7 @@ internal class Program
             }
     }
     //find 2 persons whos ‘about’ have the most same words
-    /* Linq не зробив(
+    /* 
      * public static List<Person> SameAbout(IEnumerable<Person> persons)
     {
         List<Person> personsList = persons.ToList();
@@ -64,10 +71,10 @@ internal class Program
         return persons;
     }*/
 
-    public static void sameAbout(IEnumerable<Person> persons,
-        out UserAboutRecord max)
+    public static void SameAbout(IEnumerable<Person> persons,
+        out UserAboutRecord about)
     {
-        max = new UserAboutRecord(null, null, 0);
+        about = new UserAboutRecord(null, null, 0);
         var personsList = persons.ToArray();
         for (int i = 0; i < personsList.Length - 1; i++)
             for (int j = i + 1; j < personsList.Length; j++)
@@ -77,24 +84,35 @@ internal class Program
                 var firstWords = SplitAbout2(first);
                 var secondWords = SplitAbout2(second);
                 var common = firstWords.Intersect(secondWords).Count();
-                if (common > max.WordsCount)
-                    max = new UserAboutRecord(first, second, common);
+                if (common > about.WordsCount)
+                    about = new UserAboutRecord(first, second, common);
 
                 var arr = new char[] { ',', '.' };
                 var sp = first.About.Split(arr);
             }
     }
-
-    private static string[] SplitAbout(Person person)
-    {
-        return person.About.ToLower().Replace(".", "").Replace(",", "").Replace("\r\n", "").Split(" ");
-    }
-
     private static string[] SplitAbout2(Person person)
     {
         return person.About.ToLower().Split('.', ',', ' ');
     }
     //find persons with same friends(compare by friend’s name)
+    public static void SameFriends(IEnumerable<Person> persons, out UserFriendsRecord user)
+    {
+        user = null;
+        var sameFriends = persons
+            .Select(p => new UserFriendsRecord(p.Index,
+                string.Join("", p.Friends
+                    .OrderBy(f => f.Name)
+                    .Select(f => f.Name))))
+            .GroupBy(p => p.FriendStr)
+            .Where(gr => gr.Count() > 1)
+            .ToList();
+        if (sameFriends.Count > 0)
+        {
+            user = sameFriends.SelectMany(gr => gr).First();
+        }
+    }
+    public record UserFriendsRecord(int Index, string FriendStr);
     public record UserAboutRecord(Person first, Person second, int WordsCount);
     public record UserDistanceRecord(int FirstIndex, int SecondIndex, double Distance);
 }
