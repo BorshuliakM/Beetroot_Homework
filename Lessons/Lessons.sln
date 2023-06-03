@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAsync", "Lesson2\TestAsync.csproj", "{508847E4-43E4-4ACA-AA0E-DB51D410237F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MethodsTest", "Lesson2\MethodsTest.csproj", "{508847E4-43E4-4ACA-AA0E-DB51D410237F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Async", "Async\Async.csproj", "{3EFFC295-98C6-4C8C-AAE5-77FC48344E96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MethodsHomework", "Async\MethodsHomework.csproj", "{3EFFC295-98C6-4C8C-AAE5-77FC48344E96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
